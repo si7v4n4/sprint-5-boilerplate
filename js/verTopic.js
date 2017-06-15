@@ -1,3 +1,5 @@
+
+
 var topicId = getParameterByName('topic_id');
 
 //Solo por propositos de debug
