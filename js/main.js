@@ -5,13 +5,34 @@ var $tabla = $("#temas");
 
 var cargarPagina = function(){
   cargarTema();
+  $("#search-form").submit(filtrarTema);
   $("#formularioCrearTema").submit(agregarTema);
-
+  //la siguiete linea filtra cada que presiona una tecla
+  //la voy a comentar por temas practicos, ya que se hace un poco lento
+  // $("#search").keyup(filtrarTema);
 }
 
+var filtrarTema = function(e){
+  e.preventDefault();
+  var criterioBusqueda =$("#search").val().toLowerCase();
+  // console.log(criterioBusqueda);
+  // console.log(api.url);
+  $.getJSON(api.url,function (temas) {
+    // console.log(temas);
+    var temasFiltrados = temas.filter(function(tema){
+      return tema.content.toLowerCase().indexOf(criterioBusqueda)>=0;
+    })
+    // console.log(temasFiltrados)
+    $("#temas").html("");
+    temasFiltrados.forEach(crearTema)
+    // cargarTema(temasFiltrados);
+  });
+};
+
 var cargarTema = function(){
+
   $.getJSON(api.url,function(temas){
-    console.log(temas);
+    // console.log(temas);
     temas.forEach(crearTema);
   });
 }
@@ -47,11 +68,11 @@ var agregarTema = function(e){
   var $textoAutor =$autorNuevoTema.val();
   var $contenidoTema = $("#contenido");
   var $textoContenido =$contenidoTema.val();
-  console.log($textoAutor);
-  console.log($textoContenido);
+  // console.log($textoAutor);
+  // console.log($textoContenido);
   $.post(api.url,{author_name:$textoAutor,content:$textoContenido}, function(response){
       $("#modalCrearTema").modal("hide");
-      console.log(response);
+      // console.log(response);
       crearTema(response)
       // $autor.val("");
   });
