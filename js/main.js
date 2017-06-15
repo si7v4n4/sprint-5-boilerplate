@@ -1,5 +1,5 @@
 var api={
-  url:"https://examen-laboratoria-sprint-5.herokuapp.com/topics/"
+  url:"http://examen-laboratoria-sprint-5.herokuapp.com/topics/"
 }
 var $tabla = $("#temas");
 
@@ -49,12 +49,14 @@ var crearTema = function(tema){
     // console.log(respuestas);
     var $fila = $("<tr />",{"data-id":id});
     var $temaTd = $("<td/>");
+    var $linktema =$("<a/>",{"href":"verTopic.html?topic_id="+id});
     var $autorTd = $("<td />");
     var $respuestasTd = $("<td/>");
 
-    $temaTd.text(contenido);
+    $linktema.text(contenido);
     $autorTd.text("-por: "+autor);
     $respuestasTd.text("Respuestas: "+respuestas);
+    $temaTd.append($linktema);
     $fila.append($temaTd);
     $fila.append($autorTd);
     $fila.append($respuestasTd);
@@ -77,6 +79,5 @@ var agregarTema = function(e){
       // $autor.val("");
   });
 }
-
 
 $(document).ready(cargarPagina);
