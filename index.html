@@ -3,15 +3,38 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Foro cool - sprint 5</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
   </head>
   <body>
 
-    <h1>Foro Cool</h1>
-    <table>
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <h1 class="text-center">Foro Cool</h1>
+          <div class="navbar-header">
+            <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+          <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modalCrearTema">
+            Crear Tema Nuevo
+          </button>
+        </div>
+      </nav>
+    </header>
+        <!-- Button trigger modal -->
+
+
+    <table class="table table-striped table-responsive">
       <thead>
-        <tr>
+        <tr class="info">
           <td><strong>Temas</strong></td>
           <td><strong>Autor</strong></td>
           <td><strong>Respuestas</strong></td>
@@ -23,11 +46,40 @@
 
     </table>
 
+    <!-- Modal de Crear Tema-->
+    <div class="modal fade" id="modalCrearTema" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Crea tu Tema</h4>
+          </div>
+          <form id="formularioCrearTema">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="autorTema">Autor:</label>
+                <input type="text" class="form-control" id="autorTema" placeholder="Autor del Tema">
+              </div>
+              <div class="form-group">
+                <label for="contenido">Contenido:</label>
+                <input type="text" class="form-control" id="contenido" placeholder="Contenido del Tema">
+              </div>
+              <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" id="crearTema">++Crear Tema</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div> <!-- Termina Modal de Crear Tema-->
+
 
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/main.js"></script>
 
