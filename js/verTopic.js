@@ -19,16 +19,19 @@ var mostrarInfo = function (topicId){
 var mostarRespuestas = function(topicId){
   var url = api.url+topicId+"/responses";
   console.log(url);
-  $.getJSON(url,function(respuetas){
-    console.log(tema);
+  $.getJSON(url,function(respuestas){
+    console.log(respuestas);
       respuestas.forEach(function(respuesta){
         console.log(respuesta);
         var contenedorRespuestas = $("#respuestas");
         var $contRespuesta = $("<div/>");
         var $autorRespuesta = $("<p/>");
         var $contenidoRespuesta =$("<p/>");
-
-
+        $autorRespuesta.text(respuesta.author_name);
+        $contenidoRespuesta.text(respuesta.content);
+        $contRespuesta.append($autorRespuesta);
+        $contRespuesta.append($contenidoRespuesta);
+        contenedorRespuestas.append($contRespuesta);
       })
   })
 }
